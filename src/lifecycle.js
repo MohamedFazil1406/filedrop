@@ -167,7 +167,9 @@ class LifecycleManager extends EventEmitter {
     if (this.mdns && typeof this.mdns.deregister === 'function') {
       try {
         await this._withTimeout(this.mdns.deregister(), 2000);
-      } catch (err) {}
+      } catch (err) {
+         console.error('Failed to destroy stream:', err);
+      }
     }
 
     // 4. Call server.shutdown() — await with 3s timeout
